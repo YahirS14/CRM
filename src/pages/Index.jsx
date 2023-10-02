@@ -1,53 +1,17 @@
 import { useLoaderData } from 'react-router';
+import { obtenerClientes } from '../data/Clientes';
 import Cliente from '../components/Cliente';
 
 //Similar a use Effect pero de ReactRouter(Siempre retorna)
 export function loader() {
-  const clientes = [
-    {
-      id: 1,
-      nombre: 'Juan',
-      telefono: 102013313,
-      email: 'juan@juan.com',
-      empresa: 'Codigo Con Juan',
-    },
-    {
-      id: 2,
-      nombre: 'Karen',
-      telefono: 138198313,
-      email: 'karen@juan.com',
-      empresa: 'Codigo Con Juan',
-    },
-    {
-      id: 3,
-      nombre: 'Josue',
-      telefono: 31983913,
-      email: 'josue@juan.com',
-      empresa: 'Codigo Con Juan',
-    },
-    {
-      id: 4,
-      nombre: 'Miguel',
-      telefono: 319381983,
-      email: 'miguel@juan.com',
-      empresa: 'Codigo Con Juan',
-    },
-    {
-      id: 5,
-      nombre: 'Pedro',
-      telefono: 1398198938,
-      email: 'pedro@juan.com',
-      empresa: 'Codigo Con Juan',
-    },
-  ];
+  const cliente = obtenerClientes();
 
-  return clientes;
+  return cliente;
 }
 
 function Index() {
   const clientes = useLoaderData(); //Hook que obtiene lo que retorna el loader
 
-  console.log(clientes);
   return (
     <>
       <h1 className='font-black text-4xl text-blue-900'>Clientes</h1>
@@ -64,7 +28,7 @@ function Index() {
           </thead>
           <tbody>
             {clientes.map((cliente) => (
-              <Cliente cliente={cliente} key={cliente.id}/>
+              <Cliente cliente={cliente} key={cliente.id} />
             ))}
           </tbody>
         </table>
